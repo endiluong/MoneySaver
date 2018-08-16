@@ -7,12 +7,12 @@ import com.example.admin.asm_zlud.purepackagesupport.Model.enums.InReasonType;
 
 
 public class InModel implements Parcelable{
-    int id;
+    String id;
     String note, date;
     Double amount;
 
     protected InModel(Parcel in) {
-        id = in.readInt();
+        id = in.readString();
         note = in.readString();
         date = in.readString();
         if (in.readByte() == 0) {
@@ -47,7 +47,7 @@ public class InModel implements Parcelable{
     public InModel() {
     }
 
-    public InModel(int id, String note, Double amount, String date, InReasonType type) {
+    public InModel(String id, String note, Double amount, String date, InReasonType type) {
         this.id = id;
         this.note = note;
         this.amount = amount;
@@ -67,12 +67,11 @@ public class InModel implements Parcelable{
         this.date = date;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
-
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -100,7 +99,7 @@ public class InModel implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(id);
+        parcel.writeString(id);
         parcel.writeString(note);
         parcel.writeString(date);
         if (amount == null) {

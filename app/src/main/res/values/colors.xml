@@ -5,5 +5,7 @@
     <color name="colorAccent">#FF4081</color>
     <color name="normalfab">#27ae60</color>
     <color name="pressedfab">#219251</color>
+    <color name="mygreen">#1fba1f</color>
+    <color name="myred">#f73f3f</color>
 
 </resources>

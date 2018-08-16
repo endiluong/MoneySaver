@@ -1,5 +1,6 @@
 package com.example.admin.asm_zlud;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -13,22 +14,22 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
-import com.example.admin.asm_zlud.fragment.fragmentIncome;
-import com.example.admin.asm_zlud.fragment.fragmentOutCome;
+
+import com.example.admin.asm_zlud.fragment.fragmentIncome.fragmentIncome;
+import com.example.admin.asm_zlud.fragment.fragmentOutcome.fragmentOutCome;
 import com.example.admin.asm_zlud.fragment.fragmentStatic;
+import com.example.admin.asm_zlud.service.AddActivity;
 
 public class Mainager extends AppCompatActivity implements View.OnClickListener {
     private DrawerLayout drawerLayout;
     private Toolbar toolbar;
     private NavigationView navigationView;
     private FrameLayout frameLayout;
+    private Fragment fragment = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +38,7 @@ public class Mainager extends AppCompatActivity implements View.OnClickListener 
 
         drawerLayout = findViewById(R.id.drawerlayout);
         navigationView = findViewById(R.id.navview);
-        frameLayout=findViewById(R.id.framelayout);
+        frameLayout = findViewById(R.id.framelayout);
         toolbar = findViewById(R.id.toolbar);
         //Floating Action Button Color on Pressed
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_add_room);
@@ -66,11 +67,13 @@ public class Mainager extends AppCompatActivity implements View.OnClickListener 
         Fragment fragment = null;
         Class fragmentClass;
         fragmentClass = fragmentStatic.class;
-        try{
-            fragment=(Fragment)fragmentClass.newInstance();
-        }catch(Exception e){e.printStackTrace();}
-        FragmentManager fragmentManager= getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.framelayout,fragment).commit();
+        try {
+            fragment = (Fragment) fragmentClass.newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.framelayout, fragment).commit();
     }
 
     //Set On Menu Button Tapped
@@ -98,17 +101,21 @@ public class Mainager extends AppCompatActivity implements View.OnClickListener 
             case (R.id.nav_C):
                 fragmentClass = fragmentStatic.class;
                 break;
+            case (R.id.LogOut):
+                System.exit(1);
             default:
                 fragmentClass = fragmentStatic.class;
                 break;
         }
-        try{
-            fragment=(Fragment)fragmentClass.newInstance();
-        }catch(Exception e){e.printStackTrace();}
+        try {
+            fragment = (Fragment) fragmentClass.newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         //Replace the fragment on Screen
-        FragmentManager fragmentManager= getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.framelayout,fragment).commit();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.framelayout, fragment, "Fragment").commit();
         //HighLight selected Item
         menuItem.setChecked(true);
         //Set Action Bar Tit
@@ -119,11 +126,29 @@ public class Mainager extends AppCompatActivity implements View.OnClickListener 
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             //ADD INCOME-OUTCOME by Pressing the ADd Button
-            case(R.id.fab_add_room):
-                Log.i("Test","Pressed");
+            case (R.id.fab_add_room):
+                Intent intent = new Intent(Mainager.this, AddActivity.class);
+//                startActivity(intent);
+                startActivityForResult(intent, 10001);
                 break;
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        super.onActivityResult(requestCode, resultCode, data);
+        if ((requestCode == 10001) && (resultCode == 10001)) {
+            fragmentStatic fragment = new fragmentStatic();
+//            Fragment fragment = (Fragment) getSupportFragmentManager().findFragmentByTag("Fragment");
+
+            android.support.v4.app.FragmentTransaction fragmentTransaction =
+                    getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.framelayout, fragment);
+            fragmentTransaction.commit();
+
         }
     }
 }

@@ -9,13 +9,16 @@
         >
         <item
             android:id="@+id/nav_A"
-            android:title="Section A"></item>
+            android:icon="@drawable/up"
+            android:title="Income"></item>
         <item
             android:id="@+id/nav_B"
-            android:title="Section B"></item>
+            android:icon="@drawable/down"
+            android:title="Outcome"></item>
         <item
             android:id="@+id/nav_C"
-            android:title="Section C"></item>
+            android:icon="@drawable/graph"
+            android:title="Statistical"></item>
     </group>
     <group
         android:id="@+id/group2"

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UpdelIn"
+    tools:layout_editor_absoluteY="25dp">
+
+    <TextView
+        android:id="@+id/tvTittleUD"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="MODIFY INCOME"
+        android:textSize="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv1UD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="Amount "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTittleUD" />
+
+    <TextView
+        android:id="@+id/tv2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:text="Date"
+        app:layout_constraintStart_toStartOf="@+id/tv1UD"
+        app:layout_constraintTop_toBottomOf="@+id/tv1UD" />
+
+    <TextView
+        android:id="@+id/tv3"
+        android:layout_width="wrap_content"
+        android:layout_height="18dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="32dp"
+        android:text="Note"
+        app:layout_constraintEnd_toStartOf="@+id/etNoteUD"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tv1UD"
+        app:layout_constraintTop_toBottomOf="@+id/tv4" />
+
+    <TextView
+        android:id="@+id/tv4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="32dp"
+        android:text="Type"
+        app:layout_constraintEnd_toStartOf="@+id/spnType"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tv1UD"
+        app:layout_constraintTop_toBottomOf="@+id/tv2" />
+
+    <EditText
+        android:id="@+id/etAmountUD"
+        android:layout_width="235dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        app:layout_constraintStart_toEndOf="@+id/tv1UD"
+        app:layout_constraintTop_toBottomOf="@+id/tvTittleUD" />
+
+    <Button
+        android:id="@+id/etDateUD"
+        android:layout_width="235dp"
+        android:layout_height="47dp"
+        android:ems="10"
+        android:inputType="date"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv2"
+        app:layout_constraintStart_toStartOf="@+id/etAmountUD" />
+
+    <Spinner
+        android:id="@+id/spnTypeUD"
+        android:layout_width="235dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="@+id/etAmountUD"
+        app:layout_constraintTop_toBottomOf="@+id/etDateUD" />
+
+    <Button
+        android:id="@+id/btnAddInUD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="36dp"
+        android:text="Update"
+        android:background="@color/mygreen"
+        app:layout_constraintStart_toStartOf="@+id/etNoteUD"
+        app:layout_constraintTop_toBottomOf="@+id/etNoteUD" />
+
+    <Button
+        android:id="@+id/btnCancelInUD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="Delete"
+        android:background="@color/myred"
+        app:layout_constraintEnd_toEndOf="@+id/etNoteUD"
+        app:layout_constraintHorizontal_bias="0.86"
+        app:layout_constraintStart_toEndOf="@+id/btnAddInUD"
+        app:layout_constraintTop_toTopOf="@+id/btnAddInUD" />
+
+    <EditText
+        android:id="@+id/etNoteUD"
+        android:layout_width="235dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv3"
+        app:layout_constraintStart_toStartOf="@+id/etAmountUD" />
+
+</android.support.constraint.ConstraintLayout>

@@ -3,35 +3,77 @@ package com.example.admin.asm_zlud.purepackagesupport.Model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.example.admin.asm_zlud.purepackagesupport.Model.enums.InReasonType;
 import com.example.admin.asm_zlud.purepackagesupport.Model.enums.OutReasonType;
 
-import java.util.Date;
 
-public class OutModel implements Parcelable {
-    int id;
-    String note,date;
+public class OutModel implements Parcelable{
+    String id;
+    String note, date;
     Double amount;
+
+    protected OutModel(Parcel in) {
+        id = in.readString();
+        note = in.readString();
+        date = in.readString();
+        if (in.readByte() == 0) {
+            amount = null;
+        } else {
+            amount = in.readDouble();
+        }
+    }
+
+    public static final Creator<OutModel> CREATOR = new Creator<OutModel>() {
+        @Override
+        public OutModel createFromParcel(Parcel in) {
+            return new OutModel(in);
+        }
+
+        @Override
+        public OutModel[] newArray(int size) {
+            return new OutModel[size];
+        }
+    };
+
+    public OutReasonType getType() {
+        return type;
+    }
+
+    public void setType(OutReasonType type) {
+        this.type = type;
+    }
+
     OutReasonType type;
 
     public OutModel() {
     }
 
-
-    public OutModel(int id, String note, Double amount,String date,OutReasonType type) {
+    public OutModel(String id, String note, Double amount, String date, OutReasonType type) {
         this.id = id;
         this.note = note;
         this.amount = amount;
-        this.date= date;
-        this.type=type;
+        this.date = date;
+        this.type = type;
     }
 
-    protected OutModel(Parcel in) {
-        id = in.readInt();
-        note = in.readString();
+
+
+
+
+    public String getDate() {
+        return date;
     }
 
-    public OutReasonType getType() {
-        return type;
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getNote() {
@@ -42,47 +84,6 @@ public class OutModel implements Parcelable {
         this.note = note;
     }
 
-    public void setType(OutReasonType type) {
-        this.type = type;
-    }
-
-    public static final Creator<InModel> CREATOR = new Creator<InModel>() {
-        @Override
-        public InModel createFromParcel(Parcel in) {
-            return new InModel(in);
-        }
-
-        @Override
-        public InModel[] newArray(int size) {
-            return new InModel[size];
-        }
-    };
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public int getId() {
-        return id;
-
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getReason() {
-        return note;
-    }
-
-    public void setReason(String reason) {
-        this.note = reason;
-    }
-
     public Double getAmount() {
         return amount;
     }
@@ -91,6 +92,7 @@ public class OutModel implements Parcelable {
         this.amount = amount;
     }
 
+
     @Override
     public int describeContents() {
         return 0;
@@ -98,7 +100,14 @@ public class OutModel implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(id);
+        parcel.writeString(id);
         parcel.writeString(note);
+        parcel.writeString(date);
+        if (amount == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeDouble(amount);
+        }
     }
 }

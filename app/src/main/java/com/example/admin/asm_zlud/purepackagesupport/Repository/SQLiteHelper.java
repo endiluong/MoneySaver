@@ -30,18 +30,18 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     //EDIT THIS QUERY IN USE     \/\/\/   //
     ///////////////////////////////////////
     public String CREATE_TABLE_IN = "CREATE TABLE " + DATA_TABLE_NAME_IN + "( " +
-            DATA_MODEL_ID + " TEXT PRIMARY KEY AUTOINCREMENT, " +
+            DATA_MODEL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             DATA_MODEL_AMOUNT + " DOUBLE," +
-            DATA_MODEL_NOTE + "TEXT,"+
-            DATA_MODEL_DATE + "DATE,"+
-            DATA_MODEL_REASON + " TEXT )";
+            DATA_MODEL_NOTE + " TEXT,"+
+            DATA_MODEL_DATE + " STRING,"+
+            DATA_MODEL_REASON + " INTEGER )";
 
     public String CREATE_TABLE_OUT = "CREATE TABLE " + DATA_TABLE_NAME_OUT + "( " +
-            DATA_MODEL_ID + " TEXT PRIMARY KEY AUTOINCREMENT, " +
+            DATA_MODEL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             DATA_MODEL_AMOUNT + " DOUBLE," +
-            DATA_MODEL_NOTE + "TEXT,"+
-            DATA_MODEL_DATE + "DATE,"+
-            DATA_MODEL_REASON + " TEXT )";
+            DATA_MODEL_NOTE + " TEXT,"+
+            DATA_MODEL_DATE + " STRING,"+
+            DATA_MODEL_REASON + " INTEGER )";
 
     ////////////////////////////////////////
     //Constructor

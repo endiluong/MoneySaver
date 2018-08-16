@@ -17,7 +17,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Mainager"></activity>
+        <activity android:name=".Mainager" />
+        <activity android:name=".service.AddActivity" />
+        <activity android:name=".UpdelIn" />
+        <activity android:name=".UpdelOut"></activity>
     </application>
 
 </manifest>
